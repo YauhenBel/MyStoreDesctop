@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane prefHeight="600.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.WorkerWindow">
+   <children>
+      <BorderPane prefHeight="600.0" prefWidth="1200.0">
+         <right>
+            <Pane prefHeight="544.0" prefWidth="200.0" style="-fx-border-color: gray;" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane layoutX="24.0" layoutY="14.0" prefHeight="47.0" prefWidth="152.0" style="-fx-border-color: gray;">
+                     <children>
+                        <Label fx:id="labelName" alignment="CENTER" layoutY="15.0" prefWidth="152.0" text="label" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneBtnForListProducts" layoutX="24.0" layoutY="71.0" prefHeight="129.0" prefWidth="152.0" style="-fx-border-color: gray;" visible="false">
+                     <children>
+                        <Button fx:id="btnChangeProduct" layoutX="41.0" layoutY="14.0" mnemonicParsing="false" onAction="#ActionButtonPressed" prefHeight="25.0" prefWidth="75.0" text="Изменить" />
+                        <Button fx:id="btnCreateProduct" layoutX="41.0" layoutY="47.0" mnemonicParsing="false" onAction="#ActionButtonPressed" prefWidth="75.0" text="Создать" />
+                        <Button fx:id="btnDelProduct" layoutX="41.0" layoutY="81.0" mnemonicParsing="false" onAction="#ActionButtonPressed" prefWidth="75.0" text="Удалить" />
+                     </children></Pane>
+                  <Pane fx:id="paneBtnForListOrders" layoutX="24.0" layoutY="71.0" prefHeight="54.0" prefWidth="152.0" style="-fx-border-color: gray;">
+                     <children>
+                        <Button fx:id="btnOrderClose" layoutX="39.0" layoutY="14.0" mnemonicParsing="false" onAction="#ActionButtonPressed" prefWidth="75.0" text="Закрыть" />
+                     </children></Pane>
+                  <Pane layoutX="24.0" layoutY="435.0" prefHeight="113.0" prefWidth="152.0" style="-fx-border-color: gray;">
+                     <children>
+                        <Button fx:id="btnChangeUser" alignment="CENTER" layoutX="26.0" layoutY="14.0" mnemonicParsing="false" onAction="#actionChangeUser" prefHeight="48.0" prefWidth="100.0" text="Сменить &#10;пользователя" textAlignment="CENTER" textOverrun="CLIP">
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </Button>
+                        <Button fx:id="btnCloseProgram" layoutX="26.0" layoutY="74.0" mnemonicParsing="false" onAction="#close_window" prefWidth="100.0" text="Выйти" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </right>
+         <bottom>
+            <Pane prefHeight="38.0" prefWidth="700.0" style="-fx-border-color: gray;" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="labelCount" layoutX="26.0" layoutY="11.0" prefHeight="17.0" prefWidth="279.0" text="Label" />
+                   <Label fx:id="labelCountOrders" layoutX="26.0" layoutY="11.0" prefHeight="17.0" prefWidth="279.0" text="Label" />
+                  <Label fx:id="systemMess" alignment="CENTER_RIGHT" layoutX="970.0" layoutY="11.0" prefHeight="17.0" prefWidth="210.0" text="Label" textFill="RED" />
+               </children>
+            </Pane>
+         </bottom>
+         <center>
+            <Pane prefHeight="462.0" prefWidth="369.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane fx:id="paneForManager" prefHeight="562.0" prefWidth="1000.0" style="-fx-border-color: gray;">
+                     <children>
+                        <TabPane prefHeight="562.0" prefWidth="1000.0" style="-fx-border-color: gray;" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                            <Tab onSelectionChanged="#doVisiblebtnForProducts" text="Товары">
+                                 <content>
+                                    <TableView fx:id="mTvProduct" prefHeight="200.0" prefWidth="200.0">
+                                      <columns>
+                                          <TableColumn fx:id="mImage" maxWidth="100.0" prefWidth="99.0" text="Изображение" />
+                                        <TableColumn fx:id="mColumnName" prefWidth="200.0" text="Наименование товара" />
+                                          <TableColumn fx:id="description" prefWidth="440.0" text="Описание" />
+                                          <TableColumn fx:id="mColumnAvailable" prefWidth="151.0" text="Наличие" />
+                                        <TableColumn fx:id="mColumnCost" minWidth="2.0" prefWidth="107.0" text="Цена" />
+                                      </columns>
+                                    </TableView>
+                                 </content>
+                            </Tab>
+                            <Tab onSelectionChanged="#doVisiblebtnForOrder" text="Заказы">
+                                 <content>
+                                    <TableView fx:id="mTvOrders" prefHeight="200.0" prefWidth="200.0">
+                                      <columns>
+                                        <TableColumn fx:id="mColumnIdOrder" prefWidth="32.0" text="№" />
+                                        <TableColumn fx:id="mColumnNamePrOrder" prefWidth="180.0" text="Наименование товара" />
+                                          <TableColumn fx:id="mColumnNameClientOrder" prefWidth="120.0" text="Имя" />
+                                          <TableColumn fx:id="mColumnSurnameOrder" prefWidth="79.0" text="Фамилия" />
+                                          <TableColumn fx:id="mColumnPhoneOrder" prefWidth="111.0" text="Телефон" />
+                                          <TableColumn fx:id="mColumnAdressOrder" prefWidth="215.0" text="Адрес" />
+                                          <TableColumn fx:id="mColumnCostOrder" prefWidth="116.0" text="Цена" />
+                                          <TableColumn fx:id="mColumnStatus" prefWidth="129.0" text="Статус" />
+                                      </columns>
+                                    </TableView>
+                                 </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="paneForSeller" prefHeight="562.0" prefWidth="1000.0" style="-fx-border-color: gray;" visible="false">
+                     <children>
+                        <TableView fx:id="sTvProduct" prefHeight="562.0" prefWidth="1000.0" style="-fx-border-color: gray;">
+                          <columns>
+                              <TableColumn fx:id="sImage" maxWidth="100.0" prefWidth="99.0" text="Изображение" />
+                              <TableColumn fx:id="sColumnName" prefWidth="200.0" text="Наименование товара" />
+                              <TableColumn fx:id="sDescription" prefWidth="438.0" text="Описание" />
+                              <TableColumn fx:id="sColumnAvailable" prefWidth="151.0" text="Наличие" />
+                              <TableColumn fx:id="sColumnCost" minWidth="2.0" prefWidth="107.0" text="Цена" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </center>
+      </BorderPane>
+   </children>
+</Pane>
